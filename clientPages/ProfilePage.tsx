@@ -2,6 +2,7 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import VerifiedBadge from "@/components/ui/verifiedBadge";
+import { currencyNameP } from "@/lib/importableVariables";
 import { useParams } from "next/navigation";
 import React from "react";
 
@@ -16,7 +17,7 @@ export default function ProfilePage() {
 
 function EnvolvePage({children}: {children: React.ReactNode}) {
     return (
-        <div className="mt-15">
+        <div className="p-7">
             {children}
         </div>
     )
@@ -44,7 +45,7 @@ function Actions({params}: {params: {username: string}}) {
     return (
         <div>
             <Button size={"xs"}>
-                Send Money
+                Send {currencyNameP}
             </Button>
         </div>
     )
