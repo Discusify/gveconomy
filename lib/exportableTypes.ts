@@ -10,7 +10,8 @@ export type ProfileInformation = {
     verified_at: string,
     created_at: string,
     profile_type: string,
-    avatar_url: string
+    avatar_url: string,
+    about: string, 
 }
 
 export type SessionProfile = {
@@ -33,3 +34,8 @@ export type TransactionsResponse = {
   data: Transaction[]
 }
 export type ApiPromise<T> = Promise<ApiResponse<T>>
+
+export type PaymentData = {
+  username?: string;
+  amount?: number;
+};

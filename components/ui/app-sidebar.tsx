@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/sidebar"
 import { NavUser } from "../sidebar/nav-user"
 import Link from "next/link"
+import { Button } from "./button"
+
 
 type linkT = {
   title: string,
@@ -48,6 +50,7 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter >
+        
         <NavUser user={{
           name: profile?.displayname || "",
           email: profile?.username || "",

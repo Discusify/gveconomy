@@ -7,3 +7,8 @@ export async function getProfile(username: string, accessToken?: string): ApiPro
     const cacheKey = 'profileinformation_' + username
     return FetchWToken('profile/' + username, cacheKey, accessToken)
 }
+
+export async function getProfileFunds(username: string, accessToken?: string): ApiPromise<{ wallet_balance: string }> {
+    const cacheKey = 'profilefunds_' + username
+    return FetchWToken('profile/' + username + '/funds', cacheKey, accessToken)
+}

@@ -18,9 +18,14 @@ import { getBalance, getTransactions } from "@/clientServices/userRequestService
 import { formatMoneyFromCents } from "@/lib/utilities";
 import { Transaction, TransactionsResponse } from "@/lib/exportableTypes";
 import { useRouter } from "next/navigation";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import { usePayment } from "@/clientContext/PaymentContext";
+import { currencyNameP } from "@/lib/importableVariables";
 
 export default function LoggedRoot() {
   const {profile, session} = useSession()
+  const {openPayment} = usePayment()
   const [balance, setBalance] = useState<string>('0.00')
   const [transactions, setTransactions] = useState<Transaction[]>([])
   const [loading, setLoading] = useState<boolean>(true)
@@ -50,8 +55,12 @@ export default function LoggedRoot() {
                 </h3>
                 
                 <p className="text-muted-foreground font-bold lg:text-xl">Balance</p>
-                <h1 className="lg:text-6xl font-bold">{balance}</h1>
+                {loading ? <Skeleton className="w-full max-w-200 h-6 lg:h-15 mb-4" /> :
+                <h1 className="lg:text-6xl font-bold mb-4">{balance}</h1>}
             </section>
+            <Button onClick={()=>openPayment({})} disabled={loading}>
+              Send {currencyNameP}
+            </Button>
             <Separator className="my-7 w-full" />
             <section>
                 <h3 className="text-muted-foreground font-bold lg:text-xl">Recient transactions</h3>

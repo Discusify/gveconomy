@@ -21,3 +21,17 @@ export function moneyToCents(value: string): bigint {
 
   return BigInt(whole + safeDecimals);
 }
+
+export function toCents(input: string) {
+  const [intPart, decimalPart = ""] = input.split(".");
+  const normalizedDecimals = (decimalPart + "00").slice(0, 2);
+  return parseInt(intPart) * 100 + parseInt(normalizedDecimals);
+}
+
+export function formatMoney(cents: bigint | number) {
+  const value = Number(cents);
+  return new Intl.NumberFormat("es-MX", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(value);
+}

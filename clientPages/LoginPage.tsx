@@ -69,75 +69,86 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex w-full h-full items-center justify-center">
-    <Card className="w-full sm:max-w-md">
-      <CardHeader>
-        <CardTitle>Login</CardTitle>
-        <CardDescription>
-          Enter your credentials to access your account.
-        </CardDescription>
-      </CardHeader>
+    <div className="flex w-full flex-col h-full items-center justify-center">
+      <Card className="w-full sm:max-w-md">
+        <CardHeader>
+          <CardTitle>Login</CardTitle>
+          <CardDescription>
+            Enter your credentials to access your account.
+          </CardDescription>
+        </CardHeader>
 
-      <CardContent>
-        <form
-          id="login-form"
-          onSubmit={form.handleSubmit(onSubmit)}
-        >
-          <FieldGroup className="space-y-4">
+        <CardContent>
+          <form
+            id="login-form"
+            onSubmit={form.handleSubmit(onSubmit)}
+          >
+            <FieldGroup className="space-y-4">
 
-            {/* EMAIL */}
-            <Controller
-              name="email"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel>Email</FieldLabel>
-                  <Input
-                    {...field}
-                    placeholder="you@example.com"
-                    autoComplete="email"
-                  />
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
+              {/* EMAIL */}
+              <Controller
+                name="email"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Email</FieldLabel>
+                    <Input
+                      {...field}
+                      placeholder="you@example.com"
+                      autoComplete="email"
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
               />
 
-            {/* PASSWORD */}
-            <Controller
-              name="password"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel>Password</FieldLabel>
-                  <Input
-                    {...field}
-                    type="password"
-                    placeholder="••••••••"
-                    autoComplete="current-password"
-                  />
-                  
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
-              />
-          </FieldGroup>
-        </form>
-      </CardContent>
+              {/* PASSWORD */}
+              <Controller
+                name="password"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Password</FieldLabel>
+                    <Input
+                      {...field}
+                      type="password"
+                      placeholder="••••••••"
+                      autoComplete="current-password"
+                    />
 
-      <CardFooter className="flex justify-end gap-2">
-        <Button
-          type="submit"
-          form="login-form"
-          disabled={loading}
-        >
-          {loading ? "Logging in..." : "Login"}
-        </Button>
-      </CardFooter>
-    </Card>
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+            </FieldGroup>
+          </form>
+        </CardContent>
+
+        <CardFooter className="flex justify-end gap-2">
+          <Button
+            type="submit"
+            form="login-form"
+            disabled={loading}
+          >
+            {loading ? "Logging in..." : "Login"}
+          </Button>
+        </CardFooter>
+      </Card>
+      <div className="mt-4 text-sm text-muted-foreground select-none">
+        <p>
+          Don't have an account?{" "}
+          <a
+            href="/register"
+            className="text-blue-500 hover:underline"
+          >
+            Register here
+          </a>
+        </p>
+      </div>
     </div>
   );
 }
